@@ -1,0 +1,30 @@
+<apex:page controller="AccountSearchController">
+    <apex:form id="theForm">
+        <apex:outputpanel id="searchresult">
+            <apex:commandButton value="戻る" action="{!doPrevious}" style="font-size:12pt;width:100px;height:30px;"/>
+
+            <apex:pageBlock title="検索結果：" rendered="{!(results.size == 0)}">検索条件に該当するデータがありません</apex:pageBlock>
+            <apex:pageBlock id="resultBlock" title="取引先一覧" rendered="{!(results.size > 0)}">
+                <apex:outputtext style="width:110px" value="結果 : {!results.size}件" />
+                <apex:pageblockTable id="resultTable" value="{!results}" var="o"
+                    frame="box">
+                    <apex:column style="width:80px">
+                        <apex:facet name="header">取引先名</apex:facet>
+                        <apex:outputlink value="/{!o.Id}">
+                            <apex:outputField style="width:80px" value="{!o.Name}" />
+                        </apex:outputlink>
+                    </apex:column>
+                    <apex:column style="width:160px">
+                        <apex:facet name="header">電話</apex:facet>
+                        <apex:outputField style="width:150px" value="{!o.Phone}" />
+                    </apex:column>
+                    <apex:column style="width:160px">
+                        <apex:facet name="header">  Web サイト</apex:facet>
+                        <apex:outputField style="width:150px"
+                            value="{!o.Website}" />
+                    </apex:column>
+                </apex:pageblockTable>
+            </apex:pageBlock>
+        </apex:outputpanel>
+    </apex:form>
+</apex:page>

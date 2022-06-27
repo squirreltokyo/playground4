@@ -1,0 +1,48 @@
+<apex:page controller="ContactListController">
+    <apex:form id="theForm">
+        <apex:pageBlock title="取引先責任者検索画面">
+            <apex:pageMessages id="messagearea" showDetail="false" />
+            <apex:pageblockSection id="conditionSection" title="検索" columns="2">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="メール" />
+                    <apex:inputField value="{!condition.EMail}" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="取引先名" />
+                    <apex:inputField value="{!condition.AccountId}" />
+                </apex:pageBlockSectionItem>
+            </apex:pageblockSection>
+            <apex:pageBlockButtons id="buttonSection" location="bottom">
+                <apex:commandButton value="検索" action="{!search}" style="font-size:12pt;width:100px;height:30px;" reRender="searchresult,messagearea" />
+                <apex:commandButton value="クリア" action="{!clear}" style="font-size:12pt;width:100px;height:30px;" reRender="conditionSection,searchresult,messagearea" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        <apex:outputpanel id="searchresult">
+            <apex:pageBlock title="検索結果：" rendered="{!(results.size == 0)}">検索条件に該当するデータがありません</apex:pageBlock>
+            <apex:pageBlock id="resultBlock" title="取引先責任者一覧"
+                rendered="{!(results.size > 0)}">
+                <apex:outputtext style="width:110px" value="結果 : {!results.size}件" />
+                <apex:pageblockTable id="resultTable" value="{!results}" var="item">
+                    <apex:column >
+                        <apex:facet name="header">取引先責任者</apex:facet>
+                        <apex:outputLink value="{!URLFOR('/' + item.Id)}">
+                            <apex:outputField value="{!item.Name}" />
+                        </apex:outputlink>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">取引先名</apex:facet>
+                        <apex:outputField value="{!item.AccountId}" />
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">携帯</apex:facet>
+                        <apex:outputField value="{!item.Phone}" />
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">メール</apex:facet>
+                        <apex:outputField value="{!item.Email}" />
+                    </apex:column>
+                </apex:pageblockTable>
+            </apex:pageBlock>
+        </apex:outputpanel>
+    </apex:form>
+</apex:page>

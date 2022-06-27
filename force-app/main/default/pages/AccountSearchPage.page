@@ -1,0 +1,15 @@
+<apex:page controller="AccountSearchController">
+    <apex:form id="TheForm">
+        <apex:pageBlock title="検索条件">
+            <apex:pageblockSection id="conditionSection" title="検索" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="取引先名" />
+                    <apex:inputText value="{!name}" />
+                </apex:pageBlockSectionItem>
+            </apex:pageblockSection>
+            <apex:pageBlockButtons id="buttonSection" location="bottom">
+                <apex:commandButton value="検索" action="{!doSearch}" style="font-size:12pt;width:100px;height:30px;"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

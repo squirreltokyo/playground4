@@ -1,0 +1,44 @@
+<template>
+    <lightning-card title="MiscSharedJavaScript">
+        <div>
+            <lightning-input
+                type="number"
+                label="Principal"
+                value={principal}
+                onchange={principalChange}
+            ></lightning-input>
+            <lightning-combobox
+                label="Term"
+                value={term}
+                placeholder="Select Progress"
+                onchange={termChange}
+                options={termOptions}
+            >
+            </lightning-combobox>
+            <lightning-input
+                type="number"
+                label="Rate"
+                value={rate}
+                onchange={rateChange}
+            ></lightning-input>
+            <p>
+                <lightning-button
+                    label="Calculate Monthly Payment"
+                    onclick={calculateMonthlyPayment}
+                ></lightning-button>
+            </p>
+            <lightning-input field-name="monthlyPayment"
+                type="number"
+                label="monthlyPayment"
+                currency-code="USD"
+                value={monthlyPayment}
+            ></lightning-input
+            ><br />
+        </div>
+
+        <p slot="footer">
+            Share JavaScript code using JavaScript modules. In this case, the
+            JavaScript module provides the logic to calculate mortgage payments.
+        </p>
+    </lightning-card>
+</template>
